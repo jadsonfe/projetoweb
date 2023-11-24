@@ -30,12 +30,14 @@ echo "Welcome " . getName();
     <h1>StudyConnect</h1>
 
     <form method="POST" action="salvar_mensagem.php">
-       
+   
 
         <label for="mensagem">Escreva seu texto:</label>
         <textarea name="mensagem" id="mensagem" required></textarea><br>
 
         <input type="submit" value="Enviar">
+
+        <a href=""></a>
     </form>
 </body>
 </html>
@@ -43,7 +45,7 @@ echo "Welcome " . getName();
 
 <?php
 // Consulta SQL com junção entre as tabelas
-$sql = "SELECT mensagem, data_publicacao, use_name
+$sql = "SELECT id, mensagem, data_publicacao, use_name
         FROM mensagens 
         JOIN user ON user_id = use_id 
         ORDER BY data_publicacao DESC";
@@ -59,6 +61,10 @@ try {
             echo "<p><strong>" . $row['use_name'] . "</strong></p>";
             echo "<p>" . $row['mensagem'] . "</p>";
             echo "<p>Data de Publicação: " . $row['data_publicacao'] . "</p>";
+            
+            // Adicionar um link para resposta.php com um parâmetro, como o ID da mensagem
+            echo "<p><a href='resposta.php?id=" . $row['id'] . "'>Responder</a></p>";
+            
             echo "<hr>";
         }
     } else {
