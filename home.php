@@ -44,8 +44,8 @@ echo "Welcome " . getName();
 <?php
 // Consulta SQL com junção entre as tabelas
 $sql = "SELECT mensagem, data_publicacao, use_name
-        FROM mensagens
-        JOIN user
+        FROM mensagens 
+        JOIN user ON user_id = use_id 
         ORDER BY data_publicacao DESC";
 
 try {

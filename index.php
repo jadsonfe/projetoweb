@@ -19,8 +19,8 @@ include_once 'connection.php';
             <a href="#">Lorem</a>
             <a href="#">Lorem</a>
             <a href="#">Lorem</a>
-            <a href="/backend/login.php">Login</a>
-            <a href="/backend/register.php">Register</a>
+            <a href="/projetoweb-main/login.php">Login</a>
+            <a href="/projetoweb-main/register.php">Register</a>
         </section>    
     </main>
     <footer>

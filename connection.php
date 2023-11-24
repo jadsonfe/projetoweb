@@ -2,7 +2,7 @@
 $host = "localhost";
 $port = 3306;
 $username = "root";
-$password = "";
+$password = "root";
 $database = "web_project";
 
 try {
@@ -26,8 +26,12 @@ try {
     $createTable = "CREATE TABLE IF NOT EXISTS mensagens (
         id INT AUTO_INCREMENT PRIMARY KEY,
         mensagem TEXT,
-        data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        user_id INT NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES user(use_id)
     )";
+
+    
 
     $pdo->exec($createTable);
 

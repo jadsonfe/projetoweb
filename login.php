@@ -60,8 +60,8 @@ include_once 'connection.php';
                         // 'iss' => 'localhost', // Domain API
                         // 'aud' => 'localhost',
                         'exp' => $expTime,
-                        'id' => $rowUser['id'],
-                        'name' => $rowUser['name']
+                        'id' => $rowUser['use_id'],
+                        'name' => $rowUser['use_name']
                     ];
 
                     $payload = json_encode($payload);
