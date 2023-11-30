@@ -5,6 +5,9 @@ $username = "root";
 $password = "";
 $database = "web_project";
 
+
+
+
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -16,14 +19,14 @@ try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$database", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $createTable = "CREATE TABLE IF NOT EXISTS user (
+    $createTableUser = "CREATE TABLE IF NOT EXISTS user (
         use_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         use_name VARCHAR(45) NOT NULL,
         use_email VARCHAR(255) NOT NULL UNIQUE,
         use_password VARCHAR(80) NOT NULL 
     )";
 
-    $createTable = "CREATE TABLE IF NOT EXISTS mensagens (
+    $createTableMensagens = "CREATE TABLE IF NOT EXISTS mensagens (
         id INT AUTO_INCREMENT PRIMARY KEY,
         mensagem TEXT,
         data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -31,9 +34,19 @@ try {
         FOREIGN KEY (user_id) REFERENCES user(use_id)
     )";
 
-    
+    $createTableComentarios = "CREATE TABLE IF NOT EXISTS comentarios (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        comentario TEXT,
+        data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        mensagem_id INT NOT NULL,
+        user_id INT NOT NULL,
+        FOREIGN KEY (mensagem_id) REFERENCES mensagens(id),
+        FOREIGN KEY (user_id) REFERENCES user(use_id)
+    )";
 
-    $pdo->exec($createTable);
+    $pdo->exec($createTableUser);
+    $pdo->exec($createTableMensagens);
+    $pdo->exec($createTableComentarios);
 
     // echo "Esquema criado com sucesso";
 
@@ -41,3 +54,4 @@ try {
     die("Connection Failed: " . $error->getMessage());
 }
 ?>
+

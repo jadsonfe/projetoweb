@@ -6,6 +6,7 @@ include_once 'connection.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="register.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
@@ -54,7 +55,7 @@ include_once 'connection.php';
         <a href="index.php">Index</a>
     </main>
     <footer>
-
+       &copy; 2023 StudyConect
     </footer>
 </body>
 </html>
