@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
     }
 
 // Consulta para obter a mensagem específica e suas respostas
-$sql = "SELECT mensagens.id as mensagem_id, mensagens.mensagem, mensagens.data_publicacao, 
+$sql = "SELECT mensagens.id as mensagem_id, mensagens.mensagem, mensagens.data_publicacao,
                user_original.use_name as original_user_name,
                comentarios.id as comentario_id, comentarios.comentario, 
                comentarios.data_publicacao as comentario_data, comentarios.user_id as comentario_user_id,
@@ -71,7 +71,7 @@ try {
     // Exibir a mensagem específica e suas respostas
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "<p><strong>" . $row['original_user_name'] . "</strong></p>";
+        echo "<p><strong>" . $row['original_user_name'] . "</strong></p>" ;
         echo "<p>" . $row['mensagem'] . "</p>";
         echo "<p>Data de Publicação: " . $row['data_publicacao'] . "</p>";
 

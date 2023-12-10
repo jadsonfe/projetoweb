@@ -23,7 +23,8 @@ try {
         use_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         use_name VARCHAR(45) NOT NULL,
         use_email VARCHAR(255) NOT NULL UNIQUE,
-        use_password VARCHAR(80) NOT NULL 
+        use_password VARCHAR(80) NOT NULL, 
+        use_periodo VARCHAR(15) NOT NULL
     )";
 
     $createTableMensagens = "CREATE TABLE IF NOT EXISTS mensagens (
