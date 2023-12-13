@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
     }
 
 // Consulta para obter a mensagem específica e suas respostas
-$sql = "SELECT mensagens.id as mensagem_id, mensagens.mensagem, mensagens.data_publicacao,
+$sql = "SELECT mensagens.id as mensagem_id,mensagens.user_id as mensagem_user_id, mensagens.mensagem, mensagens.data_publicacao,
                user_original.use_name as original_user_name,
                comentarios.id as comentario_id, comentarios.comentario, 
                comentarios.data_publicacao as comentario_data, comentarios.user_id as comentario_user_id,
@@ -71,13 +71,14 @@ try {
     // Exibir a mensagem específica e suas respostas
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "<p><strong>" . $row['original_user_name'] . "</strong></p>" ;
+        echo "<p><a href='perfil.php?user_id=" . $row['mensagem_user_id'] .  "'><strong>" . $row['original_user_name'] . "</strong></a>" . "</p>";
         echo "<p>" . $row['mensagem'] . "</p>";
         echo "<p>Data de Publicação: " . $row['data_publicacao'] . "</p>";
 
         // Exibir respostas se existirem
         while ($row && $row['comentario_id'] !== null) {
-            echo "<p><strong>" . $row['resposta_user_name'] . " :</strong> " . $row['comentario'] . "</p>";
+            echo "<p><a href='perfil.php?user_id=" . $row['comentario_user_id'] .  "'><strong>" . $row['resposta_user_name'] . ":" . "</strong></a>". "</br>". $row['comentario'] . "</p>";
+          
             echo "<p>Data de Publicação da Resposta: " . $row['comentario_data'] . "</p>";
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC); // Avançar para a próxima resposta
@@ -101,7 +102,7 @@ try {
     } else {
         echo "Nenhuma mensagem encontrada com o ID fornecido.";
     }
-
+    echo "<a href='home.php'>Voltar para Home</a>";
 
 $pdo = null;
 ?>

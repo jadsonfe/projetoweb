@@ -5,9 +5,6 @@ $username = "root";
 $password = "";
 $database = "web_project";
 
-
-
-
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,7 +21,8 @@ try {
         use_name VARCHAR(45) NOT NULL,
         use_email VARCHAR(255) NOT NULL UNIQUE,
         use_password VARCHAR(80) NOT NULL, 
-        use_periodo VARCHAR(15) NOT NULL
+        use_periodo VARCHAR(15) NOT NULL,
+        profile_image_path VARCHAR(255) DEFAULT NULL
     )";
 
     $createTableMensagens = "CREATE TABLE IF NOT EXISTS mensagens (

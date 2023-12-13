@@ -4,7 +4,7 @@ include_once 'connection.php';
 
 $token = $_COOKIE['token'];
 
-if(!isset($token)) exit(); 
+if (!isset($token)) exit();
 
 $arrayToken = explode('.', $token);
 $payload = $arrayToken[1];
@@ -21,10 +21,14 @@ try {
     $stmt->bindParam(':user_id', $userData->id);
     $stmt->execute();
 
-    echo "Mensagem enviada com sucesso!";
+    // Redirecionar para home.php
+    header("Location: home.php");
+    exit(); // Certifique-se de sair após o redirecionamento
 } catch (PDOException $e) {
     echo "Erro ao enviar a mensagem: " . $e->getMessage();
 }
 
 // Fechar a conexão
 $pdo = null;
+?>
+
